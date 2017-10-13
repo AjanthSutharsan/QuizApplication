@@ -2,10 +2,9 @@ package sample;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
@@ -22,13 +21,13 @@ public class Main extends Application {
         grid.setVgap(10);
         grid.setPadding(new Insets(10));
 
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+
         stage.setTitle("Quiz Application");
-        stage.setScene(new Scene(root, 1024, 768));
-        stage.show();
+        stage.setScene(new Scene(grid, 1024, 768));
+
 
         Label usernameLabel = new Label("Enter your ID"); //defines the text within the label
-        GridPane.setConstraints(usernameLabel, 12, 11)
+        GridPane.setConstraints(usernameLabel, 12, 11);
         grid.getChildren().add(usernameLabel);
 
         usernameText = new TextField();
@@ -38,7 +37,7 @@ public class Main extends Application {
         grid.getChildren().add(usernameText);
 
         Label passwordLabel = new Label("Enter your password"); //defines the text within the label
-        GridPane.setConstraints(passwordLabel, 12, 14)
+        GridPane.setConstraints(passwordLabel, 12, 14);
         grid.getChildren().add(passwordLabel);
 
         passwordText = new TextField();
@@ -49,9 +48,15 @@ public class Main extends Application {
 
         Button loginButton = new Button();
         loginButton.setText("Log in");
+        loginButton.setOnAction((ActionEvent ae) -> loginPlaceholder());
         GridPane.setConstraints(loginButton, 12, 17);
         grid.getChildren().add(loginButton);
 
+        stage.show();
+
+    }
+    public static void loginPlaceholder() {
+        new Alert(Alert.AlertType.INFORMATION, "This is a placeholder in order for the login button to actually do something").showAndWait();
     }
     public static void main(String[] args) {
         launch(args);
